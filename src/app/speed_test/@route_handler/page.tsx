@@ -7,7 +7,7 @@ import { eq } from 'drizzle-orm';
 export const dynamic = 'force-dynamic'
 
 async function getEjes() {
-  const res = await fetch("http://localhost:3000/api/ejes",  { next: { revalidate: 0 } })
+  const res = await fetch(`${process.env.APP_URL}/api/ejes`,  { next: { revalidate: 0 } })
   return await res.json()
 }
 
