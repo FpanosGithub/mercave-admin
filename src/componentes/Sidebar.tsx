@@ -1,5 +1,5 @@
 'use client'
-import { TrashIcon, TruckIcon, CogIcon, HomeModernIcon, CloudArrowDownIcon, IdentificationIcon, TableCellsIcon, WrenchScrewdriverIcon } from "@heroicons/react/24/outline"
+import { SwatchIcon, TrashIcon, TruckIcon, CogIcon, HomeModernIcon, CloudArrowDownIcon, IdentificationIcon, TableCellsIcon, WrenchScrewdriverIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import Image from "next/image"
 import tria from  '@/../public/logos/triaWhite.png'
@@ -16,17 +16,27 @@ export default function Sidebar({open}:{open:Boolean}) {
           Home
         </Link>
         <p className="font-light tracking-wider text-sm pt-4">DB RECORDS</p>
-        <Link href={'/'} className={selectedLink === 'link2' ? active : nonactive} onClick={() => setSelectedLink('link2')}>
+        <Link href={'/Vehiculos'} className={selectedLink === 'link2' ? active : nonactive} onClick={() => setSelectedLink('link2')}>
           <TruckIcon className="w-6 h-6"/>
-          Vehicles
+          Vehiculos
+        </Link>
+        <Link href={'/Vehiculos/tipos'} className={selectedLink === 'link10' ? active : nonactive} onClick={() => setSelectedLink('link10')}>
+          <SwatchIcon className="w-6 h-6"/>
+          <TruckIcon className="w-6 h-6"/>
+          Tipos
         </Link>
         <Link href={'/EAVMs'} className={selectedLink === 'link3' ? active : nonactive} onClick={() => setSelectedLink('link3')}>
           <CogIcon className="w-6 h-6"/>
           EAVMs
         </Link>
+        <Link href={'/EAVMs/tipos'} className={selectedLink === 'link11' ? active : nonactive} onClick={() => setSelectedLink('link11')}>
+          <SwatchIcon className="w-6 h-6"/>
+          <CogIcon className="w-6 h-6"/>
+          Tipos
+        </Link>
         <Link href={'/'} className={selectedLink === 'link4' ? active : nonactive} onClick={() => setSelectedLink('link4')}>
           <HomeModernIcon className="w-6 h-6"/>
-          Gauge Changers
+          Cambiadores
         </Link>
         <p className="font-light tracking-wider text-sm pt-4">SPEED TESTS</p>
         <Link href={'speed_test'} className={selectedLink === 'link5' ? active : nonactive} onClick={() => setSelectedLink('link5')}>

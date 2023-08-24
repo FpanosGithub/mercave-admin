@@ -8,6 +8,34 @@
       "when": 1689949046729,
       "tag": "0000_needy_mauler",
       "breakpoints": false
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1691086423055,
+      "tag": "0001_eager_puck",
+      "breakpoints": false
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1691087647755,
+      "tag": "0002_strange_black_tom",
+      "breakpoints": false
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1691087899257,
+      "tag": "0003_kind_otto_octavius",
+      "breakpoints": false
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1692805124586,
+      "tag": "0004_easy_sabretooth",
+      "breakpoints": false
     }
   ]
 }

@@ -17,7 +17,7 @@ export default function Modalbar({open, setOpen}:{open: Boolean, setOpen:Functio
             Home
           </Link>
           <p className="font-light tracking-wider text-sm pt-4">DB RECORDS</p>
-          <Link href={'/'} onClick={()=>{setOpen(!open)}} className="flex gap-4 hover:text-gray-300">
+          <Link href={'/Vehiculos'} onClick={()=>{setOpen(!open)}} className="flex gap-4 hover:text-gray-300">
             <TruckIcon className="w-6 h-6"/>
             Vehicles
           </Link>

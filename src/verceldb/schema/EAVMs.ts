@@ -115,13 +115,14 @@ export const  CambiosBanco = pgTable('CambiosBanco', {
   id: serial('id').primaryKey(),
   fichero: varchar('fichero', { length: 30 }),
   dt:date('dt').defaultNow(),
+  EAVM: varchar('EAVM').references(() => EAVMs.codigo),
   V: numeric('V', { precision: 4, scale: 1 }).default(sql`'0'::numeric`),
   FV: numeric('FV', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
-  sentido: sentidoCambioEnum('sentidos_cambio').default('IB-UIC'),
+  sentido: sentidoCambioEnum('sentidos_cambio').default('IBUIC'),
   alarma: boolean('alarma'),
 });
 
-export const  ValorCambioBanco = pgTable('ValorCambioBanco', {
+export const  ValoresCambiosBanco = pgTable('ValoresCambiosBanco', {
   cambio: integer('cambio').references(() => CambiosBanco.id),
   ms: numeric('ms', { precision: 8, scale: 1 }).default(sql`'0'::numeric`),
   rueda: varchar('rueda', { length: 1 }),
@@ -144,7 +145,7 @@ export const  ValoresBancoEAVMs = pgTable('ValoresBancoEAVMs', {
   fmedenc: numeric('fmedenc', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
 });
 
-export const  TotalesBanco = pgTable('ValoresBancoEAVMs', {
+export const  TotalesBanco = pgTable('TotalesBanco', {
   num_cambios: integer('num_cambios').default(0),
   fmaxdes1: numeric('fmaxdes1', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
   fmaxdes2: numeric('fmaxdes2', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
@@ -180,3 +181,11 @@ export type EAVM = InferModel<typeof EAVMs, "select">;
 export type NewEAVM = InferModel<typeof EAVMs, "insert">;
 export type TipoEAVM = InferModel<typeof TiposEAVMs, "select">;
 export type NewTipoEAVM = InferModel<typeof TiposEAVMs, "insert">;
+export type CambioBanco = InferModel<typeof CambiosBanco, "select">;
+export type NewCambioBanco = InferModel<typeof CambiosBanco, "insert">;
+export type ValorCambioBanco = InferModel<typeof ValoresCambiosBanco, "select">;
+export type NewValorCambioBanco = InferModel<typeof ValoresCambiosBanco, "insert">;
+export type ValoresBancoEAVM = InferModel<typeof ValoresBancoEAVMs, "select">;
+export type NewValoresBancoEAVM = InferModel<typeof ValoresBancoEAVMs, "insert">;
+export type ValoresTotalesBanco = InferModel<typeof TotalesBanco, "select">;
+export type NewValoresTotalesBanco = InferModel<typeof TotalesBanco, "insert">;

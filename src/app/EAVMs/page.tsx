@@ -1,4 +1,3 @@
-import { verceldb } from '@/verceldb/drizzle.client';
 import { EAVM, TipoEAVM} from '@/verceldb/schema/EAVMs';
 import { addEAVM } from '@/actions/actions_EAVMs';
 import TarjetaEje from '@/componentes/TarjetaEje';

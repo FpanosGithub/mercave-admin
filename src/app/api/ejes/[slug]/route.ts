@@ -5,10 +5,10 @@ import { eq } from 'drizzle-orm';
 
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
-  let codigo = ''
-  try {const codigo = searchParams.get('codigo')?.toString()}
-  catch {}
-  const eje = await verceldb.select().from(EAVMs).where(eq(EAVMs.codigo, codigo));
+  
+  const segments = request.url.split('/')
+  const last = segments.length -1
+  const slug = segments[last]
+  const eje = await verceldb.select().from(EAVMs).where(eq(EAVMs.codigo, slug));
   return NextResponse.json(eje)
 }

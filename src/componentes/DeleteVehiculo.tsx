@@ -1,9 +1,9 @@
 'use client'
 import Link from 'next/link'
 import { useTransition } from 'react'
-import { deleteEAVM } from "@/actions/actions_EAVMs"
+import { deleteVehiculo } from "@/actions/actions_vehiculos"
 
-export default function DeleteEAVM({codigo}: {codigo:string}) {
+export default function DeleteVehiculo({num_uic}: {num_uic:string}) {
   let [isPending, startTransition] = useTransition()
   
   return (
@@ -11,19 +11,20 @@ export default function DeleteEAVM({codigo}: {codigo:string}) {
       <div 
         onClick={(e)=>e.stopPropagation()}
         className= 'mx-auto w-[21rem] h-60 rounded-lg bg-white flex flex-col justify-between gap-4 p-4'>
-          <p>Por favor confirma que quieres eliminar el EAVM: </p>
-          <p className="text-xl text-center">{codigo}</p>
+          <p>Por favor confirma que quieres eliminar el Vehículo: </p>
+          <p className="text-xl text-center">{num_uic}</p>
           <div className="flex justify-end gap-4">
             <Link 
-              href= '/EAVMs'
+              href= '/Vehiculos'
               className="border border-gray-400 shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100 hover:shadow-lg hover:border-gray-700">
                 Cancelar
             </Link>
-            <div 
+            <Link 
+              href= '/Vehiculos'
               className="border border-gray-400 bg-rose-500 text-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-red-600 hover:shadow-lg hover:border-gray-200"
-              onClick={() => startTransition(() => deleteEAVM(codigo))}>
+              onClick={() => startTransition(() => deleteVehiculo(num_uic))}>
                 Eliminar
-            </div>
+            </Link>
           </div>
       </div>
 
