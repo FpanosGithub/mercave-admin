@@ -1,5 +1,4 @@
 'use server'
-import { redirect } from 'next/navigation'
 import { eq } from "drizzle-orm"
 import { verceldb } from "@/verceldb/drizzle.client"
 import { revalidateTag } from 'next/cache'
@@ -8,7 +7,6 @@ import { TiposVehiculos, Vehiculos } from '@/verceldb/schema/vehiculos'
 export async function deleteVehiculo(num_uic:string) {
   await verceldb.delete(Vehiculos)
   .where(eq(Vehiculos.num_uic, num_uic))
-  revalidateTag('vehiculos')
 }
 
 export async function addVehiculo (data:FormData){
@@ -64,7 +62,6 @@ export async function editVehiculo (data:FormData){
     }
     )
   .where(eq(Vehiculos.num_uic, num_uic))
-  revalidateTag('vehiculos')
 }
 
 export async function deleteTipoVehiculo(codigo:string) {
@@ -109,6 +106,4 @@ export async function editTiposVehiculos (data:FormData){
     imagen,
     })
   .where(eq(TiposVehiculos.codigo, codigo))
-  revalidateTag('tipos_vehiculos')
-  redirect('Vehiculos/tipos')
 }
