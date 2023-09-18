@@ -2,8 +2,10 @@
 import Link from 'next/link'
 import { useTransition } from 'react'
 import { deleteTipoVehiculo } from "@/actions/actions_vehiculos"
+import { useRouter } from 'next/navigation'
 
 export default function DeleteTipoVehiculo({codigo}: {codigo:string}) {
+  const router = useRouter()
   let [isPending, startTransition] = useTransition()
   return (
     <div className="fixed z-40 w-full h-screen left-0 top-0 bg-black/80 flex flex-col justify-center">
@@ -21,12 +23,11 @@ export default function DeleteTipoVehiculo({codigo}: {codigo:string}) {
             <Link 
               href= '/Vehiculos/tipos'
               className="border border-gray-400 bg-rose-500 text-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-red-600 hover:shadow-lg hover:border-gray-200"
-              onClick={() => startTransition(() => deleteTipoVehiculo(codigo))}>
+              onClick={() => {startTransition(() => deleteTipoVehiculo(codigo)); router.refresh()}}>
                 Eliminar
             </Link>
           </div>
       </div>
-
     </div>
   )
 }

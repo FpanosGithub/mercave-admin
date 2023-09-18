@@ -4,6 +4,8 @@ import { EAVM } from "@/verceldb/schema/EAVMs"
 import EstadoEje from './EstadoEje';
 import MapaEje from './MapaEje';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function FormEAVM({
   eje,
@@ -15,6 +17,7 @@ export default function FormEAVM({
   vehiculos: string[]
   }
 ){
+  const router = useRouter()
   const [lat, setLat] = useState(eje.lat)
   const [lng, setLng] = useState(eje.lng)
   const [servicio, setServicio] = useState(eje.servicio)
@@ -52,6 +55,11 @@ export default function FormEAVM({
   const onAlCambChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAlCamb(e.target.checked);
   };
+
+  const handleRefresh = () => {
+    router.push('/EAVMs')
+    router.refresh()
+  }
 
   return (
     <form action={editEAVM}>
@@ -316,12 +324,18 @@ export default function FormEAVM({
               </div>
             </div>
           </div>
-          <div className='w-full flex justify-center p-6'>
+          <div className='w-full flex justify-center space-x-4 p-6'>
             <button 
               type = 'submit'
+              onClick={handleRefresh}
               className='w-60 text-2xl border border-blue-700 shadow-xl p-4 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600'>
                 Guardar
-            </button> 
+            </button>
+            <Link 
+              href= '/EAVMs'
+              className="w-60 text-2xl text-center border border-gray-400 shadow-xl rounded-xl p-4 hover:cursor-pointer hover:bg-gray-100 hover:shadow-lg hover:border-gray-700">
+                Cancelar
+            </Link> 
           </div>
         </div>
       </form>

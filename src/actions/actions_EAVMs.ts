@@ -7,8 +7,6 @@ import { revalidateTag } from 'next/cache'
 
 export async function deleteEAVM(codigo:string) {
   await verceldb.delete(EAVMs).where(eq(EAVMs.codigo, codigo))
-  revalidateTag('ejes')
-  redirect('/EAVMs')
 }
 
 export async function addEAVM (data:FormData){
@@ -73,8 +71,6 @@ export async function editEAVM (data:FormData){
     }
     )
   .where(eq(EAVMs.codigo, codigo))
-  revalidateTag('ejes')
-  redirect('/EAVMs')
 }
 
 export async function deleteTipoEAVM(codigo:string) {
