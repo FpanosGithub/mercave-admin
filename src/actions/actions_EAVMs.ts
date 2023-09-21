@@ -1,5 +1,4 @@
 'use server'
-import { redirect } from 'next/navigation'
 import { eq } from "drizzle-orm"
 import { EAVMs, TiposEAVMs } from "@/verceldb/schema/EAVMs"
 import { verceldb } from "@/verceldb/drizzle.client"
@@ -76,7 +75,6 @@ export async function editEAVM (data:FormData){
 export async function deleteTipoEAVM(codigo:string) {
   await verceldb.delete(TiposEAVMs).where(eq(TiposEAVMs.codigo, codigo))
   revalidateTag('tipos_ejes')
-  redirect('/EAVMs/tipos')
 }
 
 export async function addTipoEAVM (data:FormData){
@@ -105,6 +103,4 @@ export async function editTiposEAVM (data:FormData){
     }
     )
   .where(eq(TiposEAVMs.codigo, codigo))
-  revalidateTag('tipos_ejes')
-  redirect('/EAVMs/tipos')
 }

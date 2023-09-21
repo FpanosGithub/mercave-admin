@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function FormTipoVehiculo({tipo,}:{tipo:TipoVehiculo,}){
-
   const router = useRouter()
   const [imagen, setImagen] = useState(tipo.imagen)
   const onImagenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
