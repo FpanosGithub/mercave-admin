@@ -34,7 +34,7 @@ export default function Sidebar({open}:{open:Boolean}) {
           <CogIcon className="w-6 h-6"/>
           Tipos
         </Link>
-        <Link href={'/'} className={selectedLink === 'link4' ? active : nonactive} onClick={() => setSelectedLink('link4')}>
+        <Link href={'/Cambiadores'} className={selectedLink === 'link4' ? active : nonactive} onClick={() => setSelectedLink('link4')}>
           <HomeModernIcon className="w-6 h-6"/>
           Cambiadores
         </Link>
