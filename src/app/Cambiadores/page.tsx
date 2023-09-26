@@ -1,8 +1,9 @@
+import { addCambiador } from "@/actions/actions_EAVMs"
 import TarjetaCambiador from "@/componentes/TarjetaCambiador"
 import { CambioBanco, EAVM } from "@/verceldb/schema/EAVMs"
 
 async function getCambiadores() {
-    const res = await fetch(`${process.env.APP_URL}/api/banco/cambios`)
+    const res = await fetch(`${process.env.APP_URL}/api/banco/cambios`, {cache: 'no-cache', next: {tags: ['cambiadores']}})
     return await res.json()
 }
 
@@ -18,7 +19,7 @@ export default async function page() {
     return(
         <>
             <div className="w-fit border border-gray-200 shadow bg-white p-4">
-                <form action="">
+                <form action={addCambiador}>
                     <div className="flex gap-8 flex-wrap">
                         <div className="w-[22rem]">
                             <label htmlFor="fichero" className="block text-base font-medium leading-6 text-gray-900">Fichero</label>

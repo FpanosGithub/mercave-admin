@@ -1,6 +1,6 @@
 'use server'
 import { eq } from "drizzle-orm"
-import { EAVMs, TiposEAVMs } from "@/verceldb/schema/EAVMs"
+import { CambiosBanco, EAVMs, TiposEAVMs } from "@/verceldb/schema/EAVMs"
 import { verceldb } from "@/verceldb/drizzle.client"
 import { revalidateTag } from 'next/cache'
 
@@ -103,4 +103,26 @@ export async function editTiposEAVM (data:FormData){
     }
     )
   .where(eq(TiposEAVMs.codigo, codigo))
+}
+
+export async function deleteCambiador(fichero:string) {
+  await verceldb.delete(CambiosBanco).where(eq(CambiosBanco.fichero, fichero))
+  revalidateTag('cambiadores')
+}
+
+export async function addCambiador(data:FormData) {
+  const fichero = data.get('fichero') as string
+  const sentido = data.get('sentido')
+  const EAVM = data.get('EAVM')
+
+  await verceldb.insert(CambiosBanco).values({
+    fichero : fichero,
+    sentido : sentido,
+    EAVM : EAVM
+  })
+  revalidateTag('cambiadores')
+}
+
+export async function editCambiador(data:FormData) {
+  
 }
