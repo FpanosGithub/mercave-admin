@@ -124,5 +124,20 @@ export async function addCambiador(data:FormData) {
 }
 
 export async function editCambiador(data:FormData) {
+  const fichero = data.get('fichero') as string
+  const V = data.get('V')
+  const FV = data.get('FV')
+  const sentido = data.get('sentido') as 'IBUIC' | 'UICIB' | null | undefined
+  const alarma = data.get('alarma') as boolean | null | undefined
+  const EAVM = data.get('EAVM')
   
+  await verceldb.update(CambiosBanco)
+  .set({
+    fichero,
+    V,
+    FV,
+    sentido,
+    alarma,
+    EAVM
+}).where(eq(CambiosBanco.fichero, fichero))
 }
