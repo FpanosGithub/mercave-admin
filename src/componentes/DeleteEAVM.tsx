@@ -2,8 +2,10 @@
 import Link from 'next/link'
 import { useTransition } from 'react'
 import { deleteEAVM } from "@/actions/actions_EAVMs"
+import { useRouter } from 'next/navigation'
 
 export default function DeleteEAVM({codigo}: {codigo:string}) {
+  const router = useRouter()
   let [isPending, startTransition] = useTransition()
   
   return (
@@ -19,11 +21,12 @@ export default function DeleteEAVM({codigo}: {codigo:string}) {
               className="border border-gray-400 shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100 hover:shadow-lg hover:border-gray-700">
                 Cancelar
             </Link>
-            <div 
+            <Link 
+              href='/EAVMs'
               className="border border-gray-400 bg-rose-500 text-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-red-600 hover:shadow-lg hover:border-gray-200"
-              onClick={() => startTransition(() => deleteEAVM(codigo))}>
+              onClick={() => {startTransition(() => deleteEAVM(codigo)); router.refresh()}}>
                 Eliminar
-            </div>
+            </Link>
           </div>
       </div>
 

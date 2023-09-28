@@ -5,6 +5,8 @@ import MapaEje from './MapaEje';
 import { useState } from 'react';
 import { TipoVehiculo } from '@/verceldb/schema/vehiculos';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation'
+import Link from 'next/link';
 
 export default function FormVehiculo({
   vehiculo,
@@ -14,6 +16,7 @@ export default function FormVehiculo({
   tipos:TipoVehiculo[],
   }
 ){
+  const router = useRouter()
   const [imagen_tipo, setImagenTipo] = useState(vehiculo.tipo.imagen)
   const [lat, setLat] = useState(vehiculo.lat)
   const [lng, setLng] = useState(vehiculo.lng)
@@ -25,6 +28,10 @@ export default function FormVehiculo({
   const [nudo, setNudo] = useState(vehiculo.nudo)
   const [transmitiendo, setTransmitiendo] = useState(vehiculo.transmitiendo)
   
+  const handleRefresh = () => {
+    router.push('/Vehiculos')
+    router.refresh()
+  }
   const onTipoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setImagenTipo(tipos.find((tipo)=>{return (tipo.codigo as string === e.target.value as string)})?.imagen)
   };
@@ -281,12 +288,18 @@ export default function FormVehiculo({
               </div>
             </div>
           </div>
-          <div className='w-full flex justify-center p-8'>
+          <div className='w-full flex justify-center space-x-4 p-8'>
             <button 
               type = 'submit'
+              onClick={handleRefresh}
               className='w-60 text-2xl border border-blue-700 shadow-xl p-4 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600'>
                 Guardar
             </button> 
+            <Link 
+              href= '/Vehiculos'
+              className="w-60 text-2xl text-center border border-gray-400 shadow-xl rounded-xl p-4 hover:cursor-pointer hover:bg-gray-100 hover:shadow-lg hover:border-gray-700">
+                Cancelar
+            </Link>
           </div>
         </div>
       </form>
