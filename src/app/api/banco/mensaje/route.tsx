@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import {verceldb} from '@/verceldb/drizzle.client'
-import {CambiosBanco, NewCambioBanco, TotalesBanco, ValorCambioBanco, ValoresBancoEAVM, ValoresBancoEAVMs, ValoresCambiosBanco, ValoresTotalesBanco} from '@/verceldb/schema/EAVMs'
+import {CambiosBanco, ValorCambioBanco, ValoresCambiosBanco } from '@/verceldb/schema/EAVMs'
 import { CalcularValoresEAVM, CalcularValoresBanco } from '@/lib/FuncionesBanco';
 
 export async function POST(request: Request) {
