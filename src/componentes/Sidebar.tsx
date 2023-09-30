@@ -38,23 +38,20 @@ export default function Sidebar({open}:{open:Boolean}) {
           <HomeModernIcon className="w-6 h-6"/>
           Cambiadores
         </Link>
+        <Link href={'/Cambiadores/versiones'} className={selectedLink === 'link11' ? active : nonactive} onClick={() => setSelectedLink('link11')}>
+          <SwatchIcon className="w-6 h-6"/>
+          <HomeModernIcon className="w-6 h-6"/>
+          Versiones
+        </Link>
         <p className="font-light tracking-wider text-sm pt-4">SPEED TESTS</p>
         <Link href={'speed_test'} className={selectedLink === 'link5' ? active : nonactive} onClick={() => setSelectedLink('link5')}>
           <CloudArrowDownIcon className="w-6 h-6"/>
           lists Download
         </Link>
-        <Link href={'/'} className={selectedLink === 'link6' ? active : nonactive} onClick={() => setSelectedLink('link6')}>
-          <IdentificationIcon className="w-6 h-6"/>
-          Find Element
-        </Link>
       <p className="font-light tracking-wider text-sm pt-4 text-rose-600">DANGER ZONE</p>
         <Link href={'/'} className={selectedLink === 'link7' ? active : nonactive} onClick={() => setSelectedLink('link7')}>
           <TrashIcon className="w-6 h-6"/>
           Delete Tables
-        </Link>
-        <Link href={'/'} className={selectedLink === 'link8' ? active : nonactive} onClick={() => setSelectedLink('link8')}>
-          <TableCellsIcon className="w-6 h-6"/>
-          Seed
         </Link>
         <Link href={'/'} className={selectedLink === 'link9' ? active : nonactive} onClick={() => setSelectedLink('link9')}>
           <WrenchScrewdriverIcon className="w-6 h-6"/>

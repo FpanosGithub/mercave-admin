@@ -2,6 +2,7 @@ import { integer, pgTable, serial, varchar, date, boolean, numeric } from 'drizz
 import { InferModel, sql } from 'drizzle-orm';
 import { anchosEnum, orgEnum, tiposEventoEnum, sentidoCambioEnum } from './enums';
 import { Vehiculos } from './vehiculos';
+import { Cambiadores } from './cambiadores';
 
 // Tipos EAVMs
 export const TiposEAVMs = pgTable('TiposEAVMs', {
@@ -107,10 +108,30 @@ export const EventosEAVM = pgTable('EventosEAVM', {
 });
 
 // Cambios en cambiador
-
+export const  Cambios = pgTable('Cambios', {
+  id: serial('id').primaryKey(),
+  dt:date('dt').defaultNow(),
+  EAVM: varchar('EAVM').references(() => EAVMs.codigo),
+  cambiador: varchar('cambiador').references(() => Cambiadores.codigo),
+  V: numeric('V', { precision: 4, scale: 1 }).default(sql`'5'::numeric`),
+  FV: numeric('FV', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+  sentido: sentidoCambioEnum('sentidos_cambio').default('IBUIC'),
+  fda:numeric('fda', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+  fca:numeric('fca', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+  fcb:numeric('fcb', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+  alarma: boolean('alarma'),
+});
+export const  TotalesCambiosEAVMs = pgTable('ValoresCambiosEAVMs', {
+  EAVM: varchar('EAVM').references(() => EAVMs.codigo), 
+  num_cambios: integer('num_cambios').default(0),
+  num_alarmas: integer('num_alarmas').default(0),
+  fmaxdes: numeric('fmaxdes', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+  fmaxcamb: numeric('fmaxcamb', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+  fmeddes: numeric('fmeddes', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+  fmedcamb: numeric('fmedcamb', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+});
 
 // Cambios en banco
-
 export const  CambiosBanco = pgTable('CambiosBanco', {
   id: serial('id').primaryKey(),
   fichero: varchar('fichero', { length: 30 }),

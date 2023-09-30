@@ -5,3 +5,4 @@ export const orgEnum = pgEnum('organizaciones', ['TRIA', 'ADIF', 'VGS', 'BV', 'M
 export const clasesVehiculosEnum = pgEnum('clases', ['LOC', 'VAG', 'MRA']);
 export const tiposEventoEnum = pgEnum('tipos_eventos', ['START', 'STOP', 'CIRC', 'NUDO']);
 export const sentidoCambioEnum = pgEnum('sentidos_cambio', ['UICIB', 'IBUIC', 'UICRUS', 'RUSUIC']);
+export const TiposCambiadoresEnum = pgEnum('tipos_cambiadores', ['Experimental', 'Comercial']);

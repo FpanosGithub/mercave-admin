@@ -36,6 +36,27 @@
       "when": 1692805124586,
       "tag": "0004_easy_sabretooth",
       "breakpoints": false
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1695999800839,
+      "tag": "0005_opposite_maverick",
+      "breakpoints": false
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1696010424553,
+      "tag": "0006_tired_mystique",
+      "breakpoints": false
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1696012374022,
+      "tag": "0007_strong_bloodstrike",
+      "breakpoints": false
     }
   ]
 }
