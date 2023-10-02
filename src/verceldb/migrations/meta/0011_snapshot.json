@@ -1,0 +1,2231 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "ca3d2cce-2867-4a0f-8ad6-abeb4210a137",
+  "prevId": "2aca829f-6472-47f7-9f92-5be493957f39",
+  "tables": {
+    "Cambiadores": {
+      "name": "Cambiadores",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(20)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tipos_cambiadores": {
+          "name": "tipos_cambiadores",
+          "type": "tipos_cambiadores",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'Experimental'"
+        },
+        "version": {
+          "name": "version",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "desc": {
+          "name": "desc",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fabricante": {
+          "name": "fabricante",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'unknown'"
+        },
+        "fecha_fab": {
+          "name": "fecha_fab",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "ultimo_mant": {
+          "name": "ultimo_mant",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "prox_mant": {
+          "name": "prox_mant",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "mant": {
+          "name": "mant",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "al_operacion": {
+          "name": "al_operacion",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "al_cambiador": {
+          "name": "al_cambiador",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "num_cambios": {
+          "name": "num_cambios",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "imagen": {
+          "name": "imagen",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'cordoba.png'"
+        },
+        "lng": {
+          "name": "lng",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'-4.8237'::numeric"
+        },
+        "lat": {
+          "name": "lat",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'37.8755'::numeric"
+        },
+        "fmeddes": {
+          "name": "fmeddes",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmedcamb": {
+          "name": "fmedcamb",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Cambiadores_version_VersionesCambiadores_codigo_fk": {
+          "name": "Cambiadores_version_VersionesCambiadores_codigo_fk",
+          "tableFrom": "Cambiadores",
+          "tableTo": "VersionesCambiadores",
+          "columnsFrom": [
+            "version"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "VersionesCambiadores": {
+      "name": "VersionesCambiadores",
+      "schema": "",
+      "columns": {
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(16)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "longitud": {
+          "name": "longitud",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "num_cuerpos": {
+          "name": "num_cuerpos",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 2
+        },
+        "imagen": {
+          "name": "imagen",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'cordoba.png'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Cambios": {
+      "name": "Cambios",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "dt": {
+          "name": "dt",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "EAVM": {
+          "name": "EAVM",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cambiador": {
+          "name": "cambiador",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "V": {
+          "name": "V",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'5'::numeric"
+        },
+        "FV": {
+          "name": "FV",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "sentidos_cambio": {
+          "name": "sentidos_cambio",
+          "type": "sentidos_cambio",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'IBUIC'"
+        },
+        "fda": {
+          "name": "fda",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fdb": {
+          "name": "fdb",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fca": {
+          "name": "fca",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fcb": {
+          "name": "fcb",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "alarma": {
+          "name": "alarma",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Cambios_EAVM_EAVMs_codigo_fk": {
+          "name": "Cambios_EAVM_EAVMs_codigo_fk",
+          "tableFrom": "Cambios",
+          "tableTo": "EAVMs",
+          "columnsFrom": [
+            "EAVM"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Cambios_cambiador_Cambiadores_codigo_fk": {
+          "name": "Cambios_cambiador_Cambiadores_codigo_fk",
+          "tableFrom": "Cambios",
+          "tableTo": "Cambiadores",
+          "columnsFrom": [
+            "cambiador"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "CambiosBanco": {
+      "name": "CambiosBanco",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "fichero": {
+          "name": "fichero",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dt": {
+          "name": "dt",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "EAVM": {
+          "name": "EAVM",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "V": {
+          "name": "V",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "FV": {
+          "name": "FV",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "sentidos_cambio": {
+          "name": "sentidos_cambio",
+          "type": "sentidos_cambio",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'IBUIC'"
+        },
+        "alarma": {
+          "name": "alarma",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "CambiosBanco_EAVM_EAVMs_codigo_fk": {
+          "name": "CambiosBanco_EAVM_EAVMs_codigo_fk",
+          "tableFrom": "CambiosBanco",
+          "tableTo": "EAVMs",
+          "columnsFrom": [
+            "EAVM"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "CirculacionesEAVM": {
+      "name": "CirculacionesEAVM",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "EAVM": {
+          "name": "EAVM",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "abierta": {
+          "name": "abierta",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vehiculo": {
+          "name": "vehiculo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dt_inicial": {
+          "name": "dt_inicial",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "lng_inicial": {
+          "name": "lng_inicial",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "lat_inicial": {
+          "name": "lat_inicial",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "loc_inicial": {
+          "name": "loc_inicial",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dt_final": {
+          "name": "dt_final",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "lng_final": {
+          "name": "lng_final",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "lat_final": {
+          "name": "lat_final",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "loc_final": {
+          "name": "loc_final",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "alarma": {
+          "name": "alarma",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "CirculacionesEAVM_EAVM_EAVMs_codigo_fk": {
+          "name": "CirculacionesEAVM_EAVM_EAVMs_codigo_fk",
+          "tableFrom": "CirculacionesEAVM",
+          "tableTo": "EAVMs",
+          "columnsFrom": [
+            "EAVM"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "CirculacionesEAVM_vehiculo_Vehiculos_num_uic_fk": {
+          "name": "CirculacionesEAVM_vehiculo_Vehiculos_num_uic_fk",
+          "tableFrom": "CirculacionesEAVM",
+          "tableTo": "Vehiculos",
+          "columnsFrom": [
+            "vehiculo"
+          ],
+          "columnsTo": [
+            "num_uic"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "ConjuntosEAVM": {
+      "name": "ConjuntosEAVM",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "EAVM": {
+          "name": "EAVM",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "varchar(60)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ConjuntosEAVM_EAVM_EAVMs_codigo_fk": {
+          "name": "ConjuntosEAVM_EAVM_EAVMs_codigo_fk",
+          "tableFrom": "ConjuntosEAVM",
+          "tableTo": "EAVMs",
+          "columnsFrom": [
+            "EAVM"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EAVMs": {
+      "name": "EAVMs",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(16)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "owner": {
+          "name": "owner",
+          "type": "organizaciones",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'ADIF'"
+        },
+        "fabricante": {
+          "name": "fabricante",
+          "type": "organizaciones",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'TRIA'"
+        },
+        "keeper": {
+          "name": "keeper",
+          "type": "organizaciones",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'ADIF'"
+        },
+        "EEM": {
+          "name": "EEM",
+          "type": "organizaciones",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'TRIA'"
+        },
+        "vehiculo": {
+          "name": "vehiculo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "prox_mant": {
+          "name": "prox_mant",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "servicio": {
+          "name": "servicio",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "observaciones": {
+          "name": "observaciones",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mant": {
+          "name": "mant",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "circ": {
+          "name": "circ",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "al_temp": {
+          "name": "al_temp",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "al_acel": {
+          "name": "al_acel",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "al_camb": {
+          "name": "al_camb",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "al_mant": {
+          "name": "al_mant",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "tempa": {
+          "name": "tempa",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'25.0'::numeric"
+        },
+        "tempb": {
+          "name": "tempb",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'25.0'::numeric"
+        },
+        "lng": {
+          "name": "lng",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'-3.9820'::numeric"
+        },
+        "lat": {
+          "name": "lat",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'40.2951'::numeric"
+        },
+        "num_cambios": {
+          "name": "num_cambios",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "km_totales": {
+          "name": "km_totales",
+          "type": "numeric(11, 3)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0.11'::numeric"
+        },
+        "coef_trabajo": {
+          "name": "coef_trabajo",
+          "type": "numeric(3, 3)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0.1'::numeric"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EAVMs_tipo_TiposEAVMs_codigo_fk": {
+          "name": "EAVMs_tipo_TiposEAVMs_codigo_fk",
+          "tableFrom": "EAVMs",
+          "tableTo": "TiposEAVMs",
+          "columnsFrom": [
+            "tipo"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EAVMs_vehiculo_Vehiculos_num_uic_fk": {
+          "name": "EAVMs_vehiculo_Vehiculos_num_uic_fk",
+          "tableFrom": "EAVMs",
+          "tableTo": "Vehiculos",
+          "columnsFrom": [
+            "vehiculo"
+          ],
+          "columnsTo": [
+            "num_uic"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "ElementosEAVM": {
+      "name": "ElementosEAVM",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "subconjunto": {
+          "name": "subconjunto",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "varchar(60)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ElementosEAVM_subconjunto_SubconjuntosEAVM_id_fk": {
+          "name": "ElementosEAVM_subconjunto_SubconjuntosEAVM_id_fk",
+          "tableFrom": "ElementosEAVM",
+          "tableTo": "SubconjuntosEAVM",
+          "columnsFrom": [
+            "subconjunto"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventosEAVM": {
+      "name": "EventosEAVM",
+      "schema": "",
+      "columns": {
+        "circulacion": {
+          "name": "circulacion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "EAVM": {
+          "name": "EAVM",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dt": {
+          "name": "dt",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "vehiculo": {
+          "name": "vehiculo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lng": {
+          "name": "lng",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "lat": {
+          "name": "lat",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "tipos_eventos": {
+          "name": "tipos_eventos",
+          "type": "tipos_eventos",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'CIRC'"
+        },
+        "vel": {
+          "name": "vel",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "tempa": {
+          "name": "tempa",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'25.0'::numeric"
+        },
+        "tempb": {
+          "name": "tempb",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'25.0'::numeric"
+        },
+        "alarma": {
+          "name": "alarma",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "axMa": {
+          "name": "axMa",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "axMb": {
+          "name": "axMb",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "ayMa": {
+          "name": "ayMa",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "ayMb": {
+          "name": "ayMb",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "azMa": {
+          "name": "azMa",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "azMb": {
+          "name": "azMb",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "axmeda": {
+          "name": "axmeda",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "axmedb": {
+          "name": "axmedb",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "aymeda": {
+          "name": "aymeda",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "aymedb": {
+          "name": "aymedb",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "azmeda": {
+          "name": "azmeda",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        },
+        "azmedb": {
+          "name": "azmedb",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2.5'::numeric"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventosEAVM_circulacion_CirculacionesEAVM_id_fk": {
+          "name": "EventosEAVM_circulacion_CirculacionesEAVM_id_fk",
+          "tableFrom": "EventosEAVM",
+          "tableTo": "CirculacionesEAVM",
+          "columnsFrom": [
+            "circulacion"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventosEAVM_EAVM_EAVMs_codigo_fk": {
+          "name": "EventosEAVM_EAVM_EAVMs_codigo_fk",
+          "tableFrom": "EventosEAVM",
+          "tableTo": "EAVMs",
+          "columnsFrom": [
+            "EAVM"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventosEAVM_vehiculo_Vehiculos_num_uic_fk": {
+          "name": "EventosEAVM_vehiculo_Vehiculos_num_uic_fk",
+          "tableFrom": "EventosEAVM",
+          "tableTo": "Vehiculos",
+          "columnsFrom": [
+            "vehiculo"
+          ],
+          "columnsTo": [
+            "num_uic"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "SubconjuntosEAVM": {
+      "name": "SubconjuntosEAVM",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "conjunto": {
+          "name": "conjunto",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "varchar(60)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "SubconjuntosEAVM_conjunto_ConjuntosEAVM_id_fk": {
+          "name": "SubconjuntosEAVM_conjunto_ConjuntosEAVM_id_fk",
+          "tableFrom": "SubconjuntosEAVM",
+          "tableTo": "ConjuntosEAVM",
+          "columnsFrom": [
+            "conjunto"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "TiposEAVMs": {
+      "name": "TiposEAVMs",
+      "schema": "",
+      "columns": {
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(16)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "anchos": {
+          "name": "anchos",
+          "type": "anchos",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'UIC-IB'"
+        },
+        "imagen": {
+          "name": "imagen",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'eje.png'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "TotalesEAVMsCambios": {
+      "name": "TotalesEAVMsCambios",
+      "schema": "",
+      "columns": {
+        "EAVM": {
+          "name": "EAVM",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "num_cambios": {
+          "name": "num_cambios",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "num_alarmas": {
+          "name": "num_alarmas",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "fmaxdes": {
+          "name": "fmaxdes",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxcamb": {
+          "name": "fmaxcamb",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmeddes": {
+          "name": "fmeddes",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmedcamb": {
+          "name": "fmedcamb",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "TotalesEAVMsCambios_EAVM_EAVMs_codigo_fk": {
+          "name": "TotalesEAVMsCambios_EAVM_EAVMs_codigo_fk",
+          "tableFrom": "TotalesEAVMsCambios",
+          "tableTo": "EAVMs",
+          "columnsFrom": [
+            "EAVM"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "ValoresBancoEAVMs": {
+      "name": "ValoresBancoEAVMs",
+      "schema": "",
+      "columns": {
+        "EAVM": {
+          "name": "EAVM",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "num_cambios": {
+          "name": "num_cambios",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "fmaxdes": {
+          "name": "fmaxdes",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "posmaxdes": {
+          "name": "posmaxdes",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxcamb": {
+          "name": "fmaxcamb",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "posmaxcamb": {
+          "name": "posmaxcamb",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fminenc": {
+          "name": "fminenc",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "posminenc": {
+          "name": "posminenc",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmeddes": {
+          "name": "fmeddes",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmedcamb": {
+          "name": "fmedcamb",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmedenc": {
+          "name": "fmedenc",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ValoresBancoEAVMs_EAVM_EAVMs_codigo_fk": {
+          "name": "ValoresBancoEAVMs_EAVM_EAVMs_codigo_fk",
+          "tableFrom": "ValoresBancoEAVMs",
+          "tableTo": "EAVMs",
+          "columnsFrom": [
+            "EAVM"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "ValoresCambiosBanco": {
+      "name": "ValoresCambiosBanco",
+      "schema": "",
+      "columns": {
+        "cambio": {
+          "name": "cambio",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ms": {
+          "name": "ms",
+          "type": "numeric(8, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "rueda": {
+          "name": "rueda",
+          "type": "varchar(1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "etapa": {
+          "name": "etapa",
+          "type": "varchar(2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "f": {
+          "name": "f",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "pos": {
+          "name": "pos",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ValoresCambiosBanco_cambio_CambiosBanco_id_fk": {
+          "name": "ValoresCambiosBanco_cambio_CambiosBanco_id_fk",
+          "tableFrom": "ValoresCambiosBanco",
+          "tableTo": "CambiosBanco",
+          "columnsFrom": [
+            "cambio"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "TotalesBanco": {
+      "name": "TotalesBanco",
+      "schema": "",
+      "columns": {
+        "num_cambios": {
+          "name": "num_cambios",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "fmaxdes1": {
+          "name": "fmaxdes1",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxdes2": {
+          "name": "fmaxdes2",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxdes3": {
+          "name": "fmaxdes3",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxdes4": {
+          "name": "fmaxdes4",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmindes1": {
+          "name": "fmindes1",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmindes2": {
+          "name": "fmindes2",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmindes3": {
+          "name": "fmindes3",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmindes4": {
+          "name": "fmindes4",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxcamb1": {
+          "name": "fmaxcamb1",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxcamb2": {
+          "name": "fmaxcamb2",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxcamb3": {
+          "name": "fmaxcamb3",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxcamb4": {
+          "name": "fmaxcamb4",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmincamb1": {
+          "name": "fmincamb1",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmincamb2": {
+          "name": "fmincamb2",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmincamb3": {
+          "name": "fmincamb3",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmincamb4": {
+          "name": "fmincamb4",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxenc1": {
+          "name": "fmaxenc1",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxenc2": {
+          "name": "fmaxenc2",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxenc3": {
+          "name": "fmaxenc3",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmaxenc4": {
+          "name": "fmaxenc4",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fminenc1": {
+          "name": "fminenc1",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fminenc2": {
+          "name": "fminenc2",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fminenc3": {
+          "name": "fminenc3",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fminenc4": {
+          "name": "fminenc4",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmeddes": {
+          "name": "fmeddes",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmedcamb": {
+          "name": "fmedcamb",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmedenc": {
+          "name": "fmedenc",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "TotalesCambiadores": {
+      "name": "TotalesCambiadores",
+      "schema": "",
+      "columns": {
+        "cambiador": {
+          "name": "cambiador",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "num_cambios": {
+          "name": "num_cambios",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "num_alarmas": {
+          "name": "num_alarmas",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "fmeddes": {
+          "name": "fmeddes",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "fmedcamb": {
+          "name": "fmedcamb",
+          "type": "numeric(8, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "TotalesCambiadores_cambiador_Cambiadores_codigo_fk": {
+          "name": "TotalesCambiadores_cambiador_Cambiadores_codigo_fk",
+          "tableFrom": "TotalesCambiadores",
+          "tableTo": "Cambiadores",
+          "columnsFrom": [
+            "cambiador"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "CirculacionesVehiculo": {
+      "name": "CirculacionesVehiculo",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "vehiculo": {
+          "name": "vehiculo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "abierta": {
+          "name": "abierta",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dt_inicial": {
+          "name": "dt_inicial",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "lng_inicial": {
+          "name": "lng_inicial",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "lat_inicial": {
+          "name": "lat_inicial",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "loc_inicial": {
+          "name": "loc_inicial",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dt_final": {
+          "name": "dt_final",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "lng_final": {
+          "name": "lng_final",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "lat_final": {
+          "name": "lat_final",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "loc_final": {
+          "name": "loc_final",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "alarma": {
+          "name": "alarma",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "CirculacionesVehiculo_vehiculo_Vehiculos_num_uic_fk": {
+          "name": "CirculacionesVehiculo_vehiculo_Vehiculos_num_uic_fk",
+          "tableFrom": "CirculacionesVehiculo",
+          "tableTo": "Vehiculos",
+          "columnsFrom": [
+            "vehiculo"
+          ],
+          "columnsTo": [
+            "num_uic"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "ConjuntosVehiculos": {
+      "name": "ConjuntosVehiculos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vehiculo": {
+          "name": "vehiculo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "varchar(60)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ConjuntosVehiculos_vehiculo_Vehiculos_num_uic_fk": {
+          "name": "ConjuntosVehiculos_vehiculo_Vehiculos_num_uic_fk",
+          "tableFrom": "ConjuntosVehiculos",
+          "tableTo": "Vehiculos",
+          "columnsFrom": [
+            "vehiculo"
+          ],
+          "columnsTo": [
+            "num_uic"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "SubconjuntosVehiculos": {
+      "name": "SubconjuntosVehiculos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "conjunto": {
+          "name": "conjunto",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "varchar(60)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "SubconjuntosVehiculos_conjunto_ConjuntosVehiculos_id_fk": {
+          "name": "SubconjuntosVehiculos_conjunto_ConjuntosVehiculos_id_fk",
+          "tableFrom": "SubconjuntosVehiculos",
+          "tableTo": "ConjuntosVehiculos",
+          "columnsFrom": [
+            "conjunto"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventosVehiculo": {
+      "name": "EventosVehiculo",
+      "schema": "",
+      "columns": {
+        "vehiculo": {
+          "name": "vehiculo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipos_eventos": {
+          "name": "tipos_eventos",
+          "type": "tipos_eventos",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'CIRC'"
+        },
+        "dt": {
+          "name": "dt",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "lng": {
+          "name": "lng",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "lat": {
+          "name": "lat",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "vel": {
+          "name": "vel",
+          "type": "numeric(4, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0'::numeric"
+        },
+        "alarma": {
+          "name": "alarma",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "circulacion": {
+          "name": "circulacion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventosVehiculo_vehiculo_Vehiculos_num_uic_fk": {
+          "name": "EventosVehiculo_vehiculo_Vehiculos_num_uic_fk",
+          "tableFrom": "EventosVehiculo",
+          "tableTo": "Vehiculos",
+          "columnsFrom": [
+            "vehiculo"
+          ],
+          "columnsTo": [
+            "num_uic"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventosVehiculo_circulacion_CirculacionesVehiculo_id_fk": {
+          "name": "EventosVehiculo_circulacion_CirculacionesVehiculo_id_fk",
+          "tableFrom": "EventosVehiculo",
+          "tableTo": "CirculacionesVehiculo",
+          "columnsFrom": [
+            "circulacion"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "TiposVehiculos": {
+      "name": "TiposVehiculos",
+      "schema": "",
+      "columns": {
+        "codigo": {
+          "name": "codigo",
+          "type": "varchar(16)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "clase": {
+          "name": "clase",
+          "type": "clases",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'VAG'"
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "marca": {
+          "name": "marca",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "modelo": {
+          "name": "modelo",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo_uic": {
+          "name": "tipo_uic",
+          "type": "varchar(2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "serie_uic": {
+          "name": "serie_uic",
+          "type": "varchar(4)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imagen": {
+          "name": "imagen",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'tolva.png'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Vehiculos": {
+      "name": "Vehiculos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "num_uic": {
+          "name": "num_uic",
+          "type": "varchar(20)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "desc": {
+          "name": "desc",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "owner": {
+          "name": "owner",
+          "type": "organizaciones",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'ADIF'"
+        },
+        "keeper": {
+          "name": "keeper",
+          "type": "organizaciones",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'ADIF'"
+        },
+        "fabricante": {
+          "name": "fabricante",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'unknown'"
+        },
+        "fecha_fab": {
+          "name": "fecha_fab",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "EEM": {
+          "name": "EEM",
+          "type": "organizaciones",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'MANFEV'"
+        },
+        "ultimo_mant": {
+          "name": "ultimo_mant",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "prox_mant": {
+          "name": "prox_mant",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "km_mant": {
+          "name": "km_mant",
+          "type": "numeric(9, 1)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'125000'::numeric"
+        },
+        "nivel_mant": {
+          "name": "nivel_mant",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 1
+        },
+        "servicio": {
+          "name": "servicio",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "observaciones": {
+          "name": "observaciones",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mant": {
+          "name": "mant",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "circ": {
+          "name": "circ",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "nudo": {
+          "name": "nudo",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "transmitiendo": {
+          "name": "transmitiendo",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "al_circ": {
+          "name": "al_circ",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "al_mant": {
+          "name": "al_mant",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "ultimo_evento": {
+          "name": "ultimo_evento",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "vel": {
+          "name": "vel",
+          "type": "numeric(6, 2)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'80.2'::numeric"
+        },
+        "lng": {
+          "name": "lng",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'-3.9820'::numeric"
+        },
+        "lat": {
+          "name": "lat",
+          "type": "numeric(9, 6)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'40.2951'::numeric"
+        },
+        "km_totales": {
+          "name": "km_totales",
+          "type": "numeric(11, 3)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'0.11'::numeric"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Vehiculos_tipo_TiposVehiculos_codigo_fk": {
+          "name": "Vehiculos_tipo_TiposVehiculos_codigo_fk",
+          "tableFrom": "Vehiculos",
+          "tableTo": "TiposVehiculos",
+          "columnsFrom": [
+            "tipo"
+          ],
+          "columnsTo": [
+            "codigo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "tipos_cambiadores": {
+      "name": "tipos_cambiadores",
+      "values": {
+        "Experimental": "Experimental",
+        "Comercial": "Comercial"
+      }
+    },
+    "anchos": {
+      "name": "anchos",
+      "values": {
+        "UIC-IB": "UIC-IB",
+        "UIC-RUS": "UIC-RUS",
+        "UIC-RUS-IB": "UIC-RUS-IB",
+        "METR-UIC": "METR-UIC",
+        "UIC": "UIC",
+        "IB": "IB"
+      }
+    },
+    "clases": {
+      "name": "clases",
+      "values": {
+        "LOC": "LOC",
+        "VAG": "VAG",
+        "MRA": "MRA"
+      }
+    },
+    "organizaciones": {
+      "name": "organizaciones",
+      "values": {
+        "TRIA": "TRIA",
+        "ADIF": "ADIF",
+        "VGS": "VGS",
+        "BV": "BV",
+        "MANFEV": "MANFEV"
+      }
+    },
+    "sentidos_cambio": {
+      "name": "sentidos_cambio",
+      "values": {
+        "UICIB": "UICIB",
+        "IBUIC": "IBUIC",
+        "UICRUS": "UICRUS",
+        "RUSUIC": "RUSUIC"
+      }
+    },
+    "tipos_eventos": {
+      "name": "tipos_eventos",
+      "values": {
+        "START": "START",
+        "STOP": "STOP",
+        "CIRC": "CIRC",
+        "NUDO": "NUDO"
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

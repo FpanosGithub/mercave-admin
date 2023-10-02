@@ -117,6 +117,7 @@ export const  Cambios = pgTable('Cambios', {
   FV: numeric('FV', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
   sentido: sentidoCambioEnum('sentidos_cambio').default('IBUIC'),
   fda:numeric('fda', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+  fdb:numeric('fdb', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
   fca:numeric('fca', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
   fcb:numeric('fcb', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
   alarma: boolean('alarma'),

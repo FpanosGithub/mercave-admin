@@ -1,0 +1,1 @@
+ALTER TABLE "Cambios" ADD COLUMN "fdb" numeric(8, 2) DEFAULT '0'::numeric;
