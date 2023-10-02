@@ -1,0 +1,1 @@
+ALTER TABLE "TotalesCambiadores" ADD COLUMN "num_alarmas" integer DEFAULT 0;

@@ -29,5 +29,7 @@ export const Cambiadores = pgTable('Cambiadores', {
   imagen: varchar('imagen', { length: 30 }).default('cordoba.png'),
   lng: numeric('lng', { precision: 9, scale: 6 }).default(sql`'-4.8237'::numeric`),
   lat: numeric('lat', { precision: 9, scale: 6 }).default(sql`'37.8755'::numeric`),
+  fmeddes: numeric('fmeddes', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
+  fmedcamb: numeric('fmedcamb', { precision: 8, scale: 2 }).default(sql`'0'::numeric`),
 });
 
