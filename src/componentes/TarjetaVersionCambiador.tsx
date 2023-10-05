@@ -1,6 +1,5 @@
 import { TrashIcon, PencilIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link';
-import { TipoVehiculo} from "@/verceldb/schema/vehiculos";
 import Image from 'next/image';
 
 

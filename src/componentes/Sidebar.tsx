@@ -38,7 +38,7 @@ export default function Sidebar({open}:{open:Boolean}) {
           <HomeModernIcon className="w-6 h-6"/>
           Cambiadores
         </Link>
-        <Link href={'/Cambiadores/versiones'} className={selectedLink === 'link11' ? active : nonactive} onClick={() => setSelectedLink('link11')}>
+        <Link href={'/Cambiadores/versiones'} className={selectedLink === 'link12' ? active : nonactive} onClick={() => setSelectedLink('link12')}>
           <SwatchIcon className="w-6 h-6"/>
           <HomeModernIcon className="w-6 h-6"/>
           Versiones

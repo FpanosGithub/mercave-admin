@@ -1,5 +1,4 @@
 import { addVersionCambiador} from '@/actions/actions_cambiadores';
-import TarjetaTipoVehiculo from '@/componentes/TarjetaTipoVehiculo';
 import TarjetaVersionCambiador from '@/componentes/TarjetaVersionCambiador';
 
 
@@ -15,7 +14,7 @@ export default async function page() {
     <div className='w-fit border border-gray-200 shadow bg-white p-4'>
       <form action={addVersionCambiador}>
         <div className='flex gap-8 px-1 flex-wrap'>
-          <div className='w-[8rem]'>
+          <div className='w-[15rem]'>
             <label htmlFor="codigo" className="block text-base font-medium leading-6 text-gray-900">Código de la Versión</label>
             <input
               type="text"
@@ -28,7 +27,7 @@ export default async function page() {
               Lós códigos deben ser únicos. No usar uno existente.
             </p>
         </div>
-        <div className='w-[12rem]'>
+        <div className='w-[15rem]'>
           <label htmlFor="descripcion" className="block text-base font-medium leading-6 text-gray-900">Descripcion</label>
           <textarea
             name="descripcion"
@@ -38,7 +37,7 @@ export default async function page() {
             placeholder=""
             aria-describedby="descripcion"/>
         </div>
-        <div className='w-[12rem]'>
+        <div className='w-[15rem]'>
             <label htmlFor="imagen" className="block text-base font-medium leading-6 text-gray-900">Imagen</label>
             <input
               type="text"
@@ -48,7 +47,7 @@ export default async function page() {
               placeholder="tolva.jpg"
               aria-describedby="Imagen del tipo de cambiador"/>
         </div>
-        <div className=' w-[11rem] flex flex-col justify-center px-4'>
+        <div className=' w-[15rem] flex flex-col justify-center px-4'>
           <button 
             type = 'submit'
             className='text-2xl border border-blue-700 shadow-xl p-4 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600'>

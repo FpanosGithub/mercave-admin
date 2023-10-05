@@ -28,8 +28,8 @@ export async function editCambiador (data:FormData){
   const prox_mant =  data.get('prox_mant') as string
   const mant =  data.get('mant') as boolean | null | undefined
   const al_operacion = data.get('al_operacion') as boolean | null | undefined
-  const al_cambiador =  data.get('fecha_fab') as boolean | null | undefined
-  const num_cambios =  data.get('fecha_fab') as number | null | undefined
+  const al_cambiador =  data.get('al_cambiador') as boolean | null | undefined
+  const num_cambios =  data.get('num_cambios') as number | null | undefined
 
   await verceldb.update(Cambiadores)
   .set({

@@ -1,10 +1,10 @@
 'use client'
 import Link from 'next/link'
 import { useTransition } from 'react'
-import { deleteCambiador } from "@/actions/actions_cambiadores"
+import { deleteVersionCambiador } from "@/actions/actions_cambiadores"
 import { useRouter } from 'next/navigation'
 
-export default function DeleteCambiador({fichero}: {fichero:string}) {
+export default function DeleteVersionCambiador({codigo}: {codigo:string}) {
   const router = useRouter()
   let [isPending, startTransition] = useTransition()
   
@@ -13,23 +13,22 @@ export default function DeleteCambiador({fichero}: {fichero:string}) {
       <div 
         onClick={(e)=>e.stopPropagation()}
         className= 'mx-auto w-[22rem] h-60 rounded-lg bg-white flex flex-col justify-between gap-4 p-4'>
-          <p>Por favor confirma que quieres eliminar el Cambiador: </p>
-          <p className="text-xl text-center">{fichero}</p>
+          <p>Por favor confirma que quieres eliminar la Version del Cambiador: </p>
+          <p className="text-xl text-center">{codigo}</p>
           <div className="flex justify-end gap-4">
             <Link 
-              href= '/Cambiadores'
+              href= '/Cambiadores/versiones'
               className="border border-gray-400 shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100 hover:shadow-lg hover:border-gray-700">
                 Cancelar
             </Link>
             <Link 
-              href='/Cambiadores'
+              href='/Cambiadores/versiones'
               className="border border-gray-400 bg-rose-500 text-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-red-600 hover:shadow-lg hover:border-gray-200"
-              onClick={() => {startTransition(() => deleteCambiador(fichero)); router.refresh()}}>
+              onClick={() => {startTransition(() => deleteVersionCambiador(codigo)); router.refresh()}}>
                 Eliminar
             </Link>
           </div>
       </div>
-
     </div>
   )
 }
